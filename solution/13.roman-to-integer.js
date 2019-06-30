@@ -83,7 +83,124 @@
  * @param {string} s
  * @return {number}
  */
-var romanToInt = function(s) {
-    
+var romanToInt1 = function(s) {
+  let reg = /(I[VX])|X[LC]|C[DM]|[IVXLCDM]/g;
+  let resStr = s.replace(reg, function (item) {
+    switch (item) {
+      case 'IV':
+        return '4+'
+      case 'IX':
+        return '9+'
+      case 'XL':
+        return '40+'
+      case 'XC':
+        return '90+'
+      case 'CD':
+        return '400+'
+      case 'CM':
+        return '900+'
+      case 'I':
+        return '1+'
+      case 'V':
+        return '5+'
+      case 'X':
+        return '10+'
+      case 'L':
+        return '50+'
+      case 'C':
+        return '100+'
+      case 'D':
+        return '500+'
+      case 'M':
+        return '1000+'
+      default:
+        break;
+    }
+  });
+  return eval(resStr+0)
+
 };
 
+var romanToInt2 = function(s) {
+  let reg = /(I[VX])|X[LC]|C[DM]|[IVXLCDM]/g;
+  let resArr = [];
+  let resStr = s.replace(reg, function (item) {
+    switch (item) {
+      case 'IV':
+        resArr.push(4);
+        break
+      case 'IX':
+        resArr.push(9);
+        break
+      case 'XL':
+        resArr.push(40);
+        break
+      case 'XC':
+        resArr.push(90);
+        break
+      case 'CD':
+        resArr.push(400);
+        break
+      case 'CM':
+        resArr.push(900);
+        break
+      case 'I':
+        resArr.push(1);
+        break
+      case 'V':
+        resArr.push(5);
+        break
+      case 'X':
+        resArr.push(10);
+        break
+      case 'L':
+        resArr.push(50);
+        break
+      case 'C':
+        resArr.push(100);
+        break
+      case 'D':
+        resArr.push(500);
+        break
+      case 'M':
+        resArr.push(1000);
+        break
+      default:
+        break;
+    }
+  });
+  let res = resArr.reduce((prev, cur) => prev+cur)
+
+  console.log(res)
+  return res
+
+};
+
+
+var romanToInt = function(s) {
+  let map = { 
+    IV: 4, IX:9, XL:40, XC: 90, CD:400, CM:900,
+    I:1, V:5, X: 10, L: 50, C :100, D :500, M :1000
+  }
+  let arr = s.split('');
+  let res = 0;
+  while (arr.length) {
+    let first = arr.shift();
+    if(!arr.length){
+      res += map[first]
+      break
+    }
+    let sec = arr.shift();
+    let joi = first+ sec;
+    if(Object.keys(map).indexOf(joi) == -1){
+      // 不是组合，把取的值还回去
+      res += map[first];
+      arr.unshift(sec);
+    } else {
+      res += map[joi]
+    }
+  }
+  return res;
+};
+
+romanToInt('MCMXCIV')
