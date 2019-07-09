@@ -52,8 +52,8 @@ var deleteDuplicates = function(head) {
       prev.next = cur.next
     } else {
       prev = cur;
-      cur = cur.next;
     }
+    cur = cur.next;
   }
   return head
 };
