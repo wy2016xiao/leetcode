@@ -58,13 +58,64 @@
  *     this.next = (next===undefined ? null : next)
  * }
  */
+// 插入一个node到当前node之后
+var insertNodePrev = function (node, byInsertNode) {
+  byInsertNode.next = node
+}
+
 /**
  * @param {ListNode} l1
  * @param {ListNode} l2
  * @return {ListNode}
  */
 var mergeTwoLists = function(l1, l2) {
+  if (!l1 && !l2) return null
+  if (!l1 || !l2) return l1 || l2
 
+  let currentL1 = l1
+  let currentL2 = l2
+  let res // 返回值链表的最后一个节点
+  let node
+  
+  while (true) {
+    // c1 next === null
+    if (
+      currentL1 === null &&
+      currentL2 !== null
+    ) {
+      res.next = currentL2
+      return node
+    }
+
+    // c2 next === null
+    if (
+      currentL1 !== null &&
+      currentL2 === null
+    ) {
+      res.next = currentL1
+      return node
+    }
+
+    if (currentL1.val <= currentL2.val) {
+      if (res) {
+        res.next = currentL1
+        res = res.next
+      } else {
+        res = currentL1
+        node = res
+      }
+      currentL1 = currentL1.next
+    } else {
+      if (res) {
+        res.next = currentL2
+        res = res.next
+      } else {
+        res = currentL2
+        node = res
+      }
+      currentL2 = currentL2.next
+    }
+  }
 };
 // @lc code=end
 
