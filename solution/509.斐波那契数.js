@@ -63,12 +63,40 @@
  * @param {number} n
  * @return {number}
  */
+// 基本解法
+// var fib = function(n) {
+//   // 如果n小于等于1
+//   if (n <= 1) return n
+
+//   // 如果大于1,f(n) = f(n-1) + f(n-2)
+//   return fib(n-1) + fib(n-2)
+// };
+
+// 加个缓存
 var fib = function(n) {
-  // 如果n小于等于1
+  const memo = new Array(n+1)
+  return helper(n, memo)
+}
+var helper = function (n, memo) {
   if (n <= 1) return n
 
-  // 如果大于1,f(n) = f(n-1) + f(n-2)
-  return fib(n-1) + fib(n-2)
-};
-// @lc code=end
+  const m = memo[n]
+  if (m) return m
 
+  memo[n] = helper(n-1, memo) + helper(n-2, memo)
+  return memo[n]
+}
+
+// DP
+// var fib = function (n) {
+//   var dp = new Array(n+1)
+//   dp[0] = 0
+//   dp[1] = 1
+
+//   for (var i = 2; i <=n; i++) {
+//     dp[i] = dp[i - 1] + dp[i - 2]
+//   }
+
+//   return dp[n]
+// }
+// @lc code=end
