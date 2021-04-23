@@ -55,22 +55,14 @@
  * @return {boolean}
  */
 var isSubsequence = function(s, t) {
-  if (s === '') {
-    return true
-  }
-  let curIndex = 0
-  let searchIndex = 0
-  let tLength = t.length
-  while (searchIndex < tLength) {
-    const curValue = s[curIndex]
-    if (curValue === t[searchIndex]) {
-      ++curIndex
-      if (curIndex === s.length) {
-        break
-      }
-    }
-    ++searchIndex
+  if (s.length === 0) return true
 
+  let curIndex = searchIndex = 0
+  while (searchIndex < t.length && curIndex < s.length) {
+    if (s[curIndex] === t[searchIndex]) {
+      curIndex++
+    }
+    searchIndex++
   }
 
   return curIndex === s.length
