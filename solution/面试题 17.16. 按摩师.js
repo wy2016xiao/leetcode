@@ -20,3 +20,42 @@
 // 输出： 12
 // 解释： 选择 1 号预约、 3 号预约、 5 号预约和 8 号预约，总时长 = 2 + 4 + 3 + 3 = 12。
 
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * 子问题解析：
+ * 考虑dp[n]为第n个预约时，最大分钟数。
+ * dp[n]有两种情况，接和不接，那么就要分别表示出接和不接的表达式
+ * 如果接，那么上一个一定不能接，即：dp[n][1] = dp[n-1][0] + nums[n]
+ * 如果不接，那么上一个接不接都行，即：dp[n][0] = max(dp[n-1][0], dp[n-1][1])
+ * 这是leetcode中简单难度DP题目中，唯一一道两个状态的DP题
+ * 
+ * 状态转移方程：
+ * dp[n][0] = max(dp[n-1][0], dp[n-1][1])
+ * dp[n][1] = dp[n-1][0] + nums[n]
+ * 
+ * 初始状态：
+ * dp[0][0] = 0
+ * dp[0][1] = nums[0]
+ * 
+ * 最后，题目的解是：
+ * max(dp[n][0], dp[n][1])
+ */
+var massage = function(nums) {
+  if (nums.length === 1) {
+    return nums[0]
+  }
+  if (!nums || nums.length === 0) {
+    return 0
+  }
+
+  let prev0 = 0
+  let prev1 = nums[0]
+  for (let i = 1; i < nums.length; i++) {
+    let cur0 = Math.max(prev0, prev1)
+    let cur1 = prev0 + nums[i]
+    prev0 = cur0
+    prev1 = cur1
+  }
+  return Math.max(prev0, prev1)
+};

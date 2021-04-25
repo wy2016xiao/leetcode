@@ -69,7 +69,7 @@
  * @param {number} n
  * @return {number}
  */
- var uniquePaths = function(m, n) {
+var uniquePaths = function(m, n) {
   let i = 1
   let arr = Array.from(new Array(m), () => new Array(n).fill(1))
   while (i < m) {
