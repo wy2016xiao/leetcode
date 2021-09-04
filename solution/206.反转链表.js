@@ -36,15 +36,17 @@
 /**
  * @param {ListNode} head
  * @return {ListNode}
+ * 两个指针，一个prev，一个head
+ * 首先将next取出来暂存，然后将head的next指向prev（翻转）
+ * 然后移动两个指针，prev = head, head = next
  */
 var reverseList = function(head) {  
-  let current = head
   let prev = null
-  while(current) {
-    let next = current.next
-    current.next = prev
-    prev = current
-    current = next
+  while (head) {
+    let next = head.next
+    head.next = prev
+    prev = head
+    head = next
   }
   return prev
 };
