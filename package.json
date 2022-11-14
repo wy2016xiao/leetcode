@@ -1,0 +1,19 @@
+{
+  "name": "leetcode",
+  "version": "1.0.0",
+  "description": "每周会抽时间做2-3道leetcode题目，保持动脑~",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wy2016xiao/leetcode.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wy2016xiao/leetcode/issues"
+  },
+  "homepage": "https://github.com/wy2016xiao/leetcode#readme"
+}
