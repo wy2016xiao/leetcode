@@ -77,18 +77,29 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function(nums1, m, nums2, n) {
-    for (let j = 0; j < nums2.length; j++) {
-        const nums2J = nums2[j];
-        for (let i = 0; i < nums1.length; i++) {
-            const nums1I = nums1[i];
-            if (nums1I === 0 || nums2J <= nums1I && nums2J >= nums1[i-1] || nums2J <= nums1I && i === 0) {
-                nums1.splice(i, 0, nums2J);
-                break;
-            }
+    const temp = [];
+    let i = 0;
+    let j = 0;
+    while (i < m && j < n) {
+        if (nums1[i] >= nums2[j]) {
+            temp.push(nums2[j]);
+            j++;
+        }
+        if (nums1[i] < nums2[j]) {
+            temp.push(nums1[i]);
+            i++;
         }
     }
-    nums1.length = m + n
+    
+    if (i < m) {
+        temp.push(...nums1.slice(i, m))
+    }
+    if (j < n) {
+        temp.push(...nums2.slice(j, n))
+    }
+    
+    for (let ti = 0; ti < temp.length; ti++) {
+        nums1[ti] = temp[ti]
+    }
 };
 // @lc code=end
-// TODO: 2222
-merge([1,2,3,0,0,0], 3, [2,4,5], 3)
