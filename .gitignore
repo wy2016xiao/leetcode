@@ -11,5 +11,3 @@ yarn-error.log*
 *.sln
 dist
 *.iml
-.vscode
-package-lock.json
