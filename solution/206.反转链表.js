@@ -39,17 +39,25 @@ const { genListNode } = require("../others/utils");
  * @param {ListNode} head
  * @return {ListNode}
  */
+// var reverseList = function(head) {
+//     if (!head || !head.next) return head;
+//     let prev = null;
+//     let cur = head;
+//     let next = head.next;
+//     while (cur !== null) {
+//         cur.next = prev;
+//         prev = cur;
+//         cur = next;
+//         next = next ? next.next : null;
+//     }
+//     return prev;
+// };
+// TODO: 111
 var reverseList = function(head) {
-    if (!head || !head.next) return head;
-    let prev = null;
-    let cur = head;
-    let next = head.next;
-    while (cur !== null) {
-        cur.next = prev;
-        prev = cur;
-        cur = next;
-        next = next ? next.next : null;
-    }
-    return prev;
-};
+    if (!head) return head;
+    let prev = head;
+    let cur = head.next;
+    let next = cur.next;
+    prev.next = reverseList()
+}
 // @lc code=end
