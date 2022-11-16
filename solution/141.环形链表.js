@@ -82,25 +82,22 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-  let current = head
-  while (current) {
-    if (current.has) {
-      return true
+    if (head === null) return false
+    if (head.next === null) return false
+    // floyd算法
+    // 快慢指针，当两个指针相遇，说明为回文
+    // 当其中一个为null说明非回文
+    let fastPtr = slowPtr = head;
+    while (fastPtr !== null && fastPtr.next !== null) {
+        fastPtr = fastPtr.next.next
+        slowPtr = slowPtr.next
+        if (fastPtr === slowPtr) {
+            return true
+        }
     }
-    current.has = true
-    current = current.next
-  }
-  return false
+    return false
 };
 
-// var hasCycle = function(head) {
-//   try {
-//     JSON.stringify(head)
-//   } catch (error) {
-//     return true
-//   }
 
-//   return false
-// };
 // @lc code=end
 
