@@ -25,6 +25,8 @@
  * 
  */
 
+const { genListNode } = require("../others/utils");
+
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -36,19 +38,18 @@
 /**
  * @param {ListNode} head
  * @return {ListNode}
- * 两个指针，一个prev，一个head
- * 首先将next取出来暂存，然后将head的next指向prev（翻转）
- * 然后移动两个指针，prev = head, head = next
  */
-var reverseList = function(head) {  
-  let prev = null
-  while (head) {
-    let next = head.next
-    head.next = prev
-    prev = head
-    head = next
-  }
-  return prev
+var reverseList = function(head) {
+    if (!head || !head.next) return head;
+    let prev = null;
+    let cur = head;
+    let next = head.next;
+    while (cur !== null) {
+        cur.next = prev;
+        prev = cur;
+        cur = next;
+        next = next ? next.next : null;
+    }
+    return prev;
 };
 // @lc code=end
-
