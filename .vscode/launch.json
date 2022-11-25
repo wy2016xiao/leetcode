@@ -9,7 +9,7 @@
 			"request": "launch",
 			"name": "node current file",
 			"program": "${file}",
-			"runtimeExecutable": "/Users/muno/.nvm/versions/node/v12.20.0/bin/node",
+			// "runtimeExecutable": "/Users/thovino/.nvm/versions/node/v12.20.0/bin/node",
 		}
     ]
 }
