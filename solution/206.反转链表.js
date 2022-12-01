@@ -39,6 +39,7 @@ const { genListNode } = require("../others/utils");
  * @param {ListNode} head
  * @return {ListNode}
  */
+// 迭代
 // var reverseList = function(head) {
 //     if (!head || !head.next) return head;
 //     let prev = null;
@@ -52,12 +53,12 @@ const { genListNode } = require("../others/utils");
 //     }
 //     return prev;
 // };
-// TODO: 111
+// 递归
 var reverseList = function(head) {
-    if (!head) return head;
-    let prev = head;
-    let cur = head.next;
-    let next = cur.next;
-    prev.next = reverseList()
+    if(!head || !head.next) return head;
+    const res = reverseList(head.next)
+    head.next.next = head;
+    head.next = null;
+    return res;
 }
 // @lc code=end
