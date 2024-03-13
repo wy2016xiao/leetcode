@@ -52,6 +52,13 @@
 /**
  * @param {string} s
  * @return {number}
+ * 双指针暴力算法，时间复杂度O(n^2)
+ * 1. 从第一个字符开始，向后遍历，找到第一个重复字符的位置
+ * 2. 记录长度
+ * 3. 然后指针全部后移，开始下一轮遍历
+ * 4. 重复1-3
+ * 5. 返回最大长度
+ * 
  */
 var lengthOfLongestSubstring = function(s) {
   let arr = s.split('')

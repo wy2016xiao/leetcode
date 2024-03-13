@@ -61,44 +61,35 @@
 /**
  * @param {string} s
  * @return {string}
+ * 中心扩散法，遍历每个字符，以当前字符为中心，向两边扩散，找到最长的回文子串
  */
 var longestPalindrome = function(s) {
-  if (s.length === 1) {
-    return s
-  }
-
-  const len = s.length
-  let max = 0
-  let res
-  for (let x = 0; x < len; x++) {
-    let i = x--
-    let j = x++
-    let curMax = 1
-    while (i >= 0 && j <= len) {
-      if (s[i] === s[j]) {
-        curMax+=2
-        i--
-        j++
-      } else {
-        if (s[i] === s[x]) {
-          curMax+=1
-          i--
-        }
-        if (s[j] === s[x]) {
-          curMax+=1
-          j++
-        }
-      }
-      i--
-      j++
+    if (s.length < 2) {
+        return s
     }
 
-    if (curMax > max) {
-      res = s.substring(i, j+1)
+    let res = ''
+    const helper = (m, n) => {
+        while(m >=0 && n <= s.length && s[m] === s[n]) {
+            m--
+            n++
+        }
+        if (n - m  > res.length) {
+            res = s.slice(m + 1, n)
+        }
     }
-  }
 
-  return res
+    for(let i = 0; i < s.length; i++) {
+        helper(i, i)
+        helper(i, i+1)
+    }
+
+    return res
 };
+
 // @lc code=end
 
+
+// @after-stub-for-debug-begin
+module.exports = longestPalindrome;
+// @after-stub-for-debug-end
